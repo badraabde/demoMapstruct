@@ -1,0 +1,17 @@
+@startuml
+class User {
+  - id: Long
+  - name: String
+  - email: String
+  + getName(): String
+  + setEmail(email: String)
+}
+
+class Order {
+  - id: Long
+  - amount: Double
+  + getAmount(): Double
+}
+
+User "1" --> "*" Order : places
+@enduml

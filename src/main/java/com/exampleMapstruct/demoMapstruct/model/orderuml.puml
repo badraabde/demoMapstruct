@@ -1,0 +1,40 @@
+@startuml
+
+
+    class User {
+        - id: Long
+        - name: String
+        - email: String
+        - role: String
+        + getName(): String
+        + setEmail(email: String)
+    }
+
+    class Order {
+        - id: Long
+        - status: String
+        - orderDate: LocalDateTime
+        + getStatus(): String
+        + setStatus(status: String)
+    }
+
+    class Product {
+        - id: Long
+        - name: String
+        - price: double
+        + getName(): String
+        + getPrice(): Double
+    }
+
+    class Category {
+        - id: Long
+        - name: String
+        + getName(): String
+    }
+
+    ' Relations
+    User "1" --> "*" Order : places
+    Order "*" --> "*" Product : contains
+    Product "*" --> "1" Category : belongs to
+}
+@enduml
