@@ -29,7 +29,7 @@ public class UserService {
     public UserDTO getUserById(Long id) {
         return userRepository.findById(id)
                 .map(userMapper::toDTO)
-                .orElse(null);
+                .orElseThrow(() -> new RuntimeException("User not found"));
     }
 
     public UserDTO createUser(UserDTO userDTO) {
@@ -46,6 +46,7 @@ public class UserService {
         }
 
         User savedUser = userRepository.save(user);
+        System.out.println("User created successfully [dev1]: " + savedUser.getId());
         return userMapper.toDTO(savedUser);
     }
 
