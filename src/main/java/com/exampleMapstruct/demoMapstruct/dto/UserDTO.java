@@ -3,6 +3,7 @@ package com.exampleMapstruct.demoMapstruct.dto;
 import com.exampleMapstruct.demoMapstruct.model.Adresse;
 import lombok.Data;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -19,4 +20,6 @@ public class UserDTO {
         private Adresse adresse;  // DTO imbriqué
         private List<OrderDTO> orders;
 
+        public UserDTO(Object o, String anonymous, String mail, String guest, ArrayList<Object> objects) {
+        }
 }
