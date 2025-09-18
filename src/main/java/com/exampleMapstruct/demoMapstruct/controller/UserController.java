@@ -4,7 +4,6 @@ import com.exampleMapstruct.demoMapstruct.dto.UserDTO;
 import com.exampleMapstruct.demoMapstruct.model.User;
 import com.exampleMapstruct.demoMapstruct.services.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -46,16 +45,7 @@ public class UserController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteUser(@PathVariable Long id) {
-        boolean deleted = userService.deleteUser(id);
-        if (deleted) {
-            // Log côté serveur
-            System.out.println("User with ID " + id + " deleted successfully.");
-            return ResponseEntity.ok("User with ID " + id + " deleted successfully.");
-        } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body("User with ID " + id + " not found.");
-        }
+    public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
+        return userService.deleteUser(id) ? ResponseEntity.noContent().build() : ResponseEntity.notFound().build();
     }
-
 }
